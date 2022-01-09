@@ -323,7 +323,7 @@ class AccountAssetAsset(models.Model):
             self.asset_account_id = self.category_id.asset_account_id
 
     @api.one
-    @api.depends(('category_id', [('state', 'not in', ('close', 'cancel'))]))
+    @api.depends('category_id.sale_receivable_account_id')
     def _get_sale_receivable_account(self):
         self.sale_receivable_account_id = \
             self.category_id.sale_receivable_account_id
